@@ -1,3 +1,5 @@
+using Dima.Interfaces;
+using Dima.Mocks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -24,6 +26,8 @@ namespace Dima
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddTransient<IAllProducts, MockProducts>();
+            services.AddTransient<IProductsCategory, MockCategory>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

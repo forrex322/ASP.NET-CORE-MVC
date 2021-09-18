@@ -1,4 +1,5 @@
-﻿using Dima.Models;
+﻿using Dima.Interfaces;
+using Dima.Models;
 using Dima.Models.Home;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -13,7 +14,6 @@ namespace Dima.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
@@ -21,7 +21,7 @@ namespace Dima.Controllers
 
         public IActionResult Index()
         {
-            IndexVM vM = new IndexVM() 
+            IndexVM vM = new IndexVM()
             {
                 MyFullName = "Dima"
             };

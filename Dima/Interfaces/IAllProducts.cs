@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Dima.Interfaces
 {
-    interface IAllProducts
+    public interface IAllProducts
     {
-        IEnumerable<Product> Product { get; }
+        IEnumerable<Product> Products { get; }
         IEnumerable<Product> getFavouriteProducts { get; set; }
         Product getObjectProduct(int productId);
     }

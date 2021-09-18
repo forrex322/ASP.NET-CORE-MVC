@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Dima.Interfaces
 {
-    interface IProductsCategory
+    public interface IProductsCategory
     {
         IEnumerable<Category> AllCategories { get; }
     }
