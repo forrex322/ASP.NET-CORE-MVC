@@ -11,7 +11,7 @@ namespace Dima.Mocks
     {
         private readonly IProductsCategory _categoryPorducts = new MockCategory();
 
-        public IEnumerable<Product> Product 
+        public IEnumerable<Product> Products 
         {
             get
             {
