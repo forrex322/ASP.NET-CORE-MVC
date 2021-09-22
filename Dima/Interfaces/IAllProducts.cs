@@ -9,7 +9,7 @@ namespace Dima.Interfaces
     public interface IAllProducts
     {
         IEnumerable<Product> Products { get; }
-        IEnumerable<Product> getFavouriteProducts { get; set; }
+        IEnumerable<Product> getFavouriteProducts { get; }
         Product getObjectProduct(int productId);
     }
 }
