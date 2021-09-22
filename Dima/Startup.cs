@@ -10,11 +10,23 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.EntityFrameworkCore;
+using Dima.Repository;
 
 namespace Dima
 {
     public class Startup
     {
+
+        private IConfigurationRoot _confString;
+
+        public Startup(Microsoft.AspNetCore.Hosting.IHostingEnvironment hostEnv) 
+        {
+            _confString = new ConfigurationBuilder().SetBasePath(hostEnv.ContentRootPath).AddJsonFile("dbsettings.json").Build();
+        }
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -25,9 +37,10 @@ namespace Dima
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<AppDBContent>(options => options.UseSqlServer(_confString.GetConnectionString("DefaultConnection")));
             services.AddControllersWithViews();
-            services.AddTransient<IAllProducts, MockProducts>();
-            services.AddTransient<IProductsCategory, MockCategory>();
+            services.AddTransient<IAllProducts, ProductRepository>();
+            services.AddTransient<IProductsCategory, CategoryRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -56,6 +69,13 @@ namespace Dima
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            using (var scope = app.ApplicationServices.CreateScope())
+            {
+                AppDBContent content = scope.ServiceProvider.GetRequiredService<AppDBContent>();
+                DBObjects.Initial(content);
+            }
+
         }
     }
 }
