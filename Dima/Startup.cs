@@ -14,6 +14,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using Dima.Repository;
+using Microsoft.AspNetCore.Http;
+using Dima.Models;
 
 namespace Dima
 {
@@ -41,6 +43,13 @@ namespace Dima
             services.AddControllersWithViews();
             services.AddTransient<IAllProducts, ProductRepository>();
             services.AddTransient<IProductsCategory, CategoryRepository>();
+
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddScoped(sp => WorkOfCart.GetCart(sp));
+
+            services.AddMemoryCache();
+            services.AddSession();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -58,6 +67,8 @@ namespace Dima
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+
+            app.UseSession();
 
             app.UseRouting();
 
