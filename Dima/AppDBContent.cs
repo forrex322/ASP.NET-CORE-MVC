@@ -13,6 +13,7 @@ namespace Dima
 
         public DbSet<Product> Product { get; set; }
         public DbSet<Category> Category { get; set; }
+        public DbSet<Cart> Carts { get; set; }
 
     }
 }
