@@ -1,0 +1,48 @@
+﻿@using Dima.Models.Home;
+@model EmailMessageVM;
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<!-- ======= Contact Section ======= -->
+<section id="contact" class="contact">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-lg-8" data-aos="fade-up" data-aos-delay="100">
+  
+                <form method="post" role="form" class="php-email-form mt-4" asp-action="SendEmail" asp-controller="Home">
+                    <div class="row">
+                        <div class="col-md-6 form-group">
+                            <input type="text" class="form-control" placeholder="Your Name" required>
+                        </div>
+                        <div class="col-md-6 form-group mt-3 mt-md-0">
+                            <input type="email" class="form-control" asp-for="EmailTo" placeholder="Your Email" required>
+                        </div>
+                    </div>
+                    <div class="form-group mt-3">
+                        <input type="text" class="form-control" asp-for="Subject" placeholder="Subject" required>
+                    </div>
+                    <div class="form-group mt-3">
+                        <textarea class="form-control" asp-for="MessageBody" rows="5" placeholder="messageBody" required></textarea>
+                    </div>
+                    <div class="my-3">
+                        <div class="loading">Loading</div>
+                        <div class="error-message"></div>
+                        <div class="sent-message">Your message has been sent. Thank you!</div>
+                    </div>
+                    <div class="text-center"><button type="submit">Send Message</button></div>
+                </form>
+                <!--<form method="post" asp-action="SendEmail" asp-controller="Home">
+                    <input type="email" asp-for="EmailTo" placeholder="Your Email" required><br>
+                    <input type="text" asp-for="Subject" placeholder="Subject" required><br>
+                    <textarea asp-for="MessageBody" rows="5" placeholder="messageBody" required></textarea><br>
+                    <button type="submit">Send Message</button>
+                </form>-->
+
+            </div>
+        </div>
+
+    </div>
+</section><!-- End Contact Section -->

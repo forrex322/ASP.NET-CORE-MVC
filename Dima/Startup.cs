@@ -16,6 +16,7 @@ using Microsoft.EntityFrameworkCore;
 using Dima.Repository;
 using Microsoft.AspNetCore.Http;
 using Dima.Models;
+using Dima.Services.EmailSender;
 
 namespace Dima
 {
@@ -49,6 +50,10 @@ namespace Dima
 
             services.AddMemoryCache();
             services.AddSession();
+
+
+            services.AddTransient<IEmailSender, MailKitEmailSender>();
+            services.AddHttpContextAccessor();
 
         }
 
