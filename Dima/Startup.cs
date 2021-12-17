@@ -16,6 +16,7 @@ using Microsoft.AspNetCore.Http;
 using Dima.Models;
 using Dima.Services.EmailSender;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Localization;
 
 namespace Dima
 {
@@ -53,7 +54,6 @@ namespace Dima
 
             services.AddTransient<IEmailSender, MailKitEmailSender>();
             services.AddHttpContextAccessor();
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -1,0 +1,24 @@
+﻿@using Dima.Models.Home
+@using Dima.Models.File
+@*@using Microsoft.AspNetCore.Mvc.Localization*@
+
+@model UploadFileViewModel
+
+@{
+    ViewData["Title"] = "Files";
+}
+
+@*@inject IViewLocalizer Localizer;*@
+
+@*<div class="text-center">
+    @await Html.PartialAsync("_SelectLanguagePartial")
+    <h1 class="display-4">@Localizer["UploadingFiles"]</h1>
+</div>*@
+
+<form asp-action="Upload" asp-controller="File" enctype="multipart/form-data" method="post">
+    <p>Введіть назву для файла:</p> <br />
+    <input type="text" asp-for="Name" /> <br> <br>
+    <p>Виберіть файл:</p> <br />
+    <input type="file" asp-for="File" /> <br> <br>
+    <input type="submit" value="Upload" /> <br> <br>
+</form>
