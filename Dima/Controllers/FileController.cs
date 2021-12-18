@@ -15,27 +15,27 @@ namespace Dima.Controllers
     public class FileController : Controller
     {
         private readonly IWebHostEnvironment _webHostEnvironment;
-        //private readonly IStringLocalizer<HomeController> _localizer;
+        private readonly IStringLocalizer<HomeController> _localizer;
 
-        public FileController(IWebHostEnvironment webHostEnvironment)
-                              //IStringLocalizer<HomeController> localizer)
+        public FileController(IWebHostEnvironment webHostEnvironment,
+                              IStringLocalizer<HomeController> localizer)
         {
             _webHostEnvironment = webHostEnvironment;
-            //_localizer = localizer;
+            _localizer = localizer;
         }
 
-        //[HttpPost]
-        //public IActionResult SetLanguage(string culture, string returnUrl)
-        //{
-        //    Response.Cookies.Append(
-        //        CookieRequestCultureProvider.DefaultCookieName,
-        //        CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture)),
-        //        new CookieOptions { Expires = DateTimeOffset.Now.AddYears(1) }
-        //        );
-        //    return LocalRedirect(returnUrl);
-        //}
+        [HttpPost]
+        public IActionResult SetLanguage(string culture, string returnUrl)
+        {
+            Response.Cookies.Append(
+                CookieRequestCultureProvider.DefaultCookieName,
+                CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture)),
+                new CookieOptions { Expires = DateTimeOffset.Now.AddYears(1) }
+                );
+            return LocalRedirect(returnUrl);
+        }
 
-        
+
         public IActionResult UploadFile()
         {
             return View();
