@@ -19,6 +19,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Localization;
 using System.Globalization;
 using Microsoft.AspNetCore.Localization;
+using FluentValidation.AspNetCore;
 
 namespace Dima
 {
@@ -61,6 +62,7 @@ namespace Dima
             services.AddLocalization(options => options.ResourcesPath = "Resources");
 
             services.AddControllersWithViews()
+                    .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<Startup>())
                     .AddDataAnnotationsLocalization()
                     .AddViewLocalization();
 
